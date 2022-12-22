@@ -1,15 +1,32 @@
 package com.itc.jdbctojpa.entity;
 
+import jakarta.persistence.*;
+
 import java.util.Date;
 
+
+// jika nama tabel sama dengan nama kelas tidak usah di definisikan
+// @Table(name = "person")
+@Entity // medefinisikan bahwa ini adalah sebuah entitas yang akan jadi tabel
+@NamedQuery(name = "find_all_persons", query = "select p from Person p")
 public class Person {
+
+    @Id // menyatakan sebagai id
+    @GeneratedValue // untuk membuat id secara otomatis
     private int id;
+
     private String name;
     private String location;
     private Date birthDate;
 
     public Person(int id, String name, String location, Date birthDate) {
         this.id = id;
+        this.name = name;
+        this.location = location;
+        this.birthDate = birthDate;
+    }
+
+    public Person(String name, String location, Date birthDate) {
         this.name = name;
         this.location = location;
         this.birthDate = birthDate;
